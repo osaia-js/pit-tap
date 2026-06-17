@@ -52,7 +52,13 @@ export class App implements OnInit {
   }
 
   formatKm(km: number): string {
-    return km.toLocaleString('de-DE') + ' km';
+    return km.toLocaleString('de-DE') + ' km';
+  }
+
+  formatDate(dateStr: string): string {
+    return new Date(dateStr).toLocaleDateString('de-DE', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+    });
   }
 
   statusLabel(s: ServiceStatus): string {
@@ -67,15 +73,38 @@ export class App implements OnInit {
     return '!!';
   }
 
-  statusDetail(st: StatusResult): string {
-    if (st.daysLeft < 0) {
-      return `Seit ${Math.abs(st.daysLeft)} Tagen überfällig`;
+  /** Hauptzeile: "in 3 Monaten oder 13.500 km – je nachdem was zuerst eintritt" */
+  nextServiceLine(st: StatusResult): string {
+    const datePart = this.formatDatePart(st);
+    const kmPart   = this.formatKmPart(st);
+
+    if (st.status === 'ueberfaellig') {
+      const parts: string[] = [];
+      if (st.daysLeft < 0) parts.push(`${Math.abs(st.daysLeft)} Tage überfällig`);
+      if (st.kmLeft  < 0) parts.push(`${Math.abs(st.kmLeft).toLocaleString('de-DE')} km überzogen`);
+      return parts.join(' · ');
     }
-    if (st.status === 'ok') {
-      return `Nächster Service in ca. ${st.kmLeft.toLocaleString('de-DE')} km`;
-    }
-    if (st.daysLeft === 0) return 'Heute fällig';
-    return `In ${st.daysLeft} Tagen fällig`;
+
+    return `${datePart}  oder  ${kmPart}`;
+  }
+
+  /** Hinweiszeile nur bei Status ok/bald */
+  nextServiceHint(st: StatusResult): string {
+    if (st.status === 'ueberfaellig') return 'Service sofort erforderlich';
+    return 'je nachdem was zuerst eintritt';
+  }
+
+  private formatDatePart(st: StatusResult): string {
+    const label = st.nextServiceDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+    if (st.daysLeft <= 0) return `heute fällig`;
+    const months = Math.round(st.daysLeft / 30);
+    if (months < 2) return `in ${st.daysLeft} Tagen`;
+    return `in ca. ${months} Monaten (${label})`;
+  }
+
+  private formatKmPart(st: StatusResult): string {
+    if (st.kmLeft <= 0) return `${Math.abs(st.kmLeft).toLocaleString('de-DE')} km überzogen`;
+    return `in ${st.kmLeft.toLocaleString('de-DE')} km`;
   }
 
   bookingUrl(serviceKey?: string): string {

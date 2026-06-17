@@ -65,7 +65,33 @@
           <span class="vehicle-card__plate">{{ v.plate }}</span>
           <span class="vehicle-card__km">{{ formatKm(v.currentKm) }}</span>
         </div>
-        <p class="vehicle-card__detail">Öl: {{ v.oil }} · Filter: {{ v.filters }}</p>
+
+        <div class="vehicle-specs">
+          <div class="spec">
+            <span class="spec__label">FIN</span>
+            <span class="spec__value spec__value--mono">{{ displayVin() }}</span>
+          </div>
+          <div class="spec">
+            <span class="spec__label">Karosserie</span>
+            <span class="spec__value">{{ v.bodyType }}</span>
+          </div>
+          <div class="spec">
+            <span class="spec__label">Kraftstoff</span>
+            <span class="spec__value">{{ v.fuel }}</span>
+          </div>
+          <div class="spec">
+            <span class="spec__label">Getriebe</span>
+            <span class="spec__value">{{ v.transmission }}</span>
+          </div>
+          <div class="spec">
+            <span class="spec__label">Leistung</span>
+            <span class="spec__value">{{ v.powerPs }} PS</span>
+          </div>
+          <div class="spec">
+            <span class="spec__label">Öl</span>
+            <span class="spec__value">{{ v.oil }}</span>
+          </div>
+        </div>
       </div>
 
       <!-- ── Statusbanner ────────────────────────────────────────────────── -->
@@ -74,7 +100,8 @@
           <div class="status-banner__icon">{{ statusIcon(st.status) }}</div>
           <div class="status-banner__body">
             <strong class="status-banner__title">{{ statusLabel(st.status) }}</strong>
-            <span class="status-banner__detail">{{ statusDetail(st) }}</span>
+            <span class="status-banner__line">{{ nextServiceLine(st) }}</span>
+            <span class="status-banner__hint">{{ nextServiceHint(st) }}</span>
           </div>
         </div>
       }
@@ -119,6 +146,29 @@
         </a>
         <p class="cta-section__note">Servicepartner: Pitstop GmbH</p>
       </div>
+
+      <!-- ── Serviceheft ─────────────────────────────────────────────────── -->
+      <section class="history">
+        <h2 class="history__heading">Serviceheft</h2>
+        <div class="history__timeline">
+          @for (entry of v.history; track entry.date; let last = $last) {
+            <div class="history-entry" [class.history-entry--last]="last">
+              <div class="history-entry__dot"></div>
+              <div class="history-entry__card">
+                <div class="history-entry__type">{{ entry.type }}</div>
+                <div class="history-entry__meta">
+                  <span>{{ formatDate(entry.date) }}</span>
+                  <span>·</span>
+                  <span>{{ formatKm(entry.km) }}</span>
+                  @if (entry.workshop) {
+                    <span>· {{ entry.workshop }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
 
     }
   }
