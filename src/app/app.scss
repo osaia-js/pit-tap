@@ -1,0 +1,456 @@
+// ── Layout ────────────────────────────────────────────────────────────────────
+.app {
+  min-height: 100dvh;
+  max-width: 430px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #f4f5f7;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #1a2944;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+}
+
+.logo-shield {
+  background: #ffd100;
+  color: #1a2944;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 3px 7px;
+  border-radius: 3px;
+  letter-spacing: .4px;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.logo-divider {
+  color: rgba(255, 255, 255, .3);
+  font-size: 14px;
+}
+
+.logo-service {
+  color: #ffd100;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.demo-pill {
+  background: rgba(255, 209, 0, .15);
+  color: #ffd100;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 209, 0, .35);
+  letter-spacing: .4px;
+}
+
+// ── Demo-Leiste ───────────────────────────────────────────────────────────────
+.demo-bar {
+  background: #fff;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+
+  &__label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  &__chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+.chip {
+  background: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a2944;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s, border-color .15s;
+
+  &:active { opacity: .8; }
+
+  &--active {
+    background: #1a2944;
+    border-color: #1a2944;
+    color: #ffd100;
+  }
+}
+
+// ── HUK-Promo ─────────────────────────────────────────────────────────────────
+.huk-promo {
+  background: #ffd100;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__badge {
+    background: #1a2944;
+    color: #ffd100;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    strong {
+      font-size: 13px;
+      color: #1a2944;
+      font-weight: 700;
+    }
+
+    span {
+      font-size: 12px;
+      color: #1a2944;
+      opacity: .75;
+    }
+  }
+}
+
+// ── Fahrzeugkarte ─────────────────────────────────────────────────────────────
+.vehicle-card {
+  background: #fff;
+  margin: 16px 16px 0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
+
+  &__model {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a2944;
+    margin-bottom: 8px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &__plate {
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a2944;
+    letter-spacing: .5px;
+  }
+
+  &__km {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  &__detail {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+}
+
+// ── Statusbanner ──────────────────────────────────────────────────────────────
+.status-banner {
+  margin: 12px 16px 0;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__detail {
+    font-size: 13px;
+    opacity: .8;
+  }
+
+  &--ok {
+    background: #dcfce7;
+    color: #166534;
+    .status-banner__icon { background: #22c55e; }
+  }
+
+  &--bald {
+    background: #fef3c7;
+    color: #92400e;
+    .status-banner__icon { background: #f59e0b; }
+  }
+
+  &--ueberfaellig {
+    background: #fee2e2;
+    color: #991b1b;
+    .status-banner__icon { background: #ef4444; }
+  }
+}
+
+// ── Serviceoptionen ───────────────────────────────────────────────────────────
+.services {
+  padding: 20px 16px 0;
+
+  &__heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a2944;
+    margin-bottom: 12px;
+  }
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 2px 8px rgba(0, 0, 0, .04);
+  position: relative;
+  border: 1.5px solid transparent;
+
+  &--recommended {
+    border-color: #1a2944;
+  }
+
+  &__badge {
+    position: absolute;
+    top: -1px;
+    right: 14px;
+    background: #1a2944;
+    color: #ffd100;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 0 0 6px 6px;
+    letter-spacing: .3px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__icon {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  &__info { flex: 1; }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a2944;
+    margin-bottom: 2px;
+  }
+
+  &__sub {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+}
+
+.price--normal {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2944;
+}
+
+.price--strike {
+  font-size: 12px;
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.price--huk {
+  font-size: 16px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity .15s, transform .1s;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    transform: scale(.97);
+    opacity: .85;
+  }
+
+  &--sm {
+    padding: 8px 16px;
+    font-size: 13px;
+    background: #1a2944;
+    color: #fff;
+  }
+
+  &--primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    background: #1a2944;
+    color: #ffd100;
+    border-radius: 12px;
+    letter-spacing: .3px;
+  }
+
+  &--outline {
+    padding: 12px 24px;
+    font-size: 14px;
+    background: transparent;
+    color: #1a2944;
+    border: 2px solid #1a2944;
+  }
+}
+
+// ── CTA-Bereich ───────────────────────────────────────────────────────────────
+.cta-section {
+  padding: 20px 16px;
+
+  &__note {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 8px;
+  }
+}
+
+// ── Nicht gefunden ────────────────────────────────────────────────────────────
+.not-found {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 12px;
+
+  &__icon { font-size: 56px; margin-bottom: 8px; }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a2944;
+  }
+
+  &__text {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 280px;
+
+    strong { color: #1a2944; }
+  }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.footer {
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: auto;
+
+  a {
+    color: #64748b;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}

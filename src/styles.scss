@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: #f4f5f7;
+  color: #1a2944;
+  line-height: 1.4;
+  min-height: 100dvh;
+}
+
+button {
+  font-family: inherit;
+}
